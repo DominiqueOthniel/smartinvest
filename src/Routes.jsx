@@ -9,6 +9,7 @@ import InvestmentDashboard from './pages/investment-dashboard';
 import InvestmentConfirmation from './pages/investment-confirmation';
 import ProjectDetails from './pages/project-details';
 import InvestmentOpportunities from './pages/investment-opportunity';
+import CommunityChatPage from './pages/community-chat';
 
 const Routes = () => {
   return (
@@ -24,6 +25,7 @@ const Routes = () => {
         <Route path="/investment-confirmation" element={<InvestmentConfirmation />} />
         <Route path="/project-details" element={<ProjectDetails />} />
         <Route path="/investment-opportunities" element={<InvestmentOpportunities />} />
+        <Route path="/community-chat" element={<CommunityChatPage />} />
         <Route path="*" element={<NotFound />} />
       </RouterRoutes>
       </ErrorBoundary>

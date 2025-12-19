@@ -8,7 +8,7 @@ const MobileBottomNavComponent = () => {
   const navigationItems = [
     { label: 'Tableau', path: '/investment-dashboard', icon: 'LayoutDashboard' },
     { label: 'Opportunités', path: '/investment-opportunities', icon: 'TrendingUp' },
-    { label: 'Historique', path: '/investment-history', icon: 'History' },
+    { label: 'Chat', path: '/community-chat', icon: 'MessageCircle' },
     { label: 'Compte', path: '/account-settings', icon: 'User' }
   ];
 

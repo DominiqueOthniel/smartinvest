@@ -11,6 +11,7 @@ const HeaderComponent = () => {
     { label: 'Tableau de Bord', path: '/investment-dashboard', icon: 'LayoutDashboard' },
     { label: 'Opportunités', path: '/investment-opportunities', icon: 'TrendingUp' },
     { label: 'Historique', path: '/investment-history', icon: 'History' },
+    { label: 'Communauté', path: '/community-chat', icon: 'MessageCircle' },
     { label: 'Mon Compte', path: '/account-settings', icon: 'User' }
   ];
 
