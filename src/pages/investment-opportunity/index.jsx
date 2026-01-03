@@ -291,13 +291,10 @@ const InvestmentOpportunities = () => {
         
         <main className="content-wrapper">
           <div className="max-w-7xl mx-auto">
-            <div className="mb-8">
-              <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-2">
-                Opportunités d'Investissement
+            <div className="mb-6">
+              <h1 className="text-2xl font-bold text-foreground">
+                Opportunités
               </h1>
-              <p className="text-muted-foreground">
-                Découvrez et investissez dans des projets prometteurs à travers l'Afrique de l'Ouest
-              </p>
             </div>
 
             <FilterToolbar

@@ -157,8 +157,7 @@ const InvestmentHistory = () => {
       <div className="content-wrapper">
         <div className="max-w-7xl mx-auto">
           <div className="mb-8">
-            <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-2">Historique des Investissements</h1>
-            <p className="text-muted-foreground">Suivez vos transactions et performances d'investissement</p>
+            <h1 className="text-2xl font-bold text-foreground">Historique</h1>
           </div>
 
           <SummaryStats stats={summaryStats} />

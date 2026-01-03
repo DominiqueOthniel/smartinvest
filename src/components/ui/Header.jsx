@@ -8,11 +8,9 @@ const HeaderComponent = () => {
   const dropdownRef = useRef(null);
 
   const navigationItems = [
-    { label: 'Tableau de Bord', path: '/investment-dashboard', icon: 'LayoutDashboard' },
+    { label: 'Tableau', path: '/investment-dashboard', icon: 'LayoutDashboard' },
     { label: 'Opportunités', path: '/investment-opportunities', icon: 'TrendingUp' },
-    { label: 'Historique', path: '/investment-history', icon: 'History' },
-    { label: 'Communauté', path: '/community-chat', icon: 'MessageCircle' },
-    { label: 'Mon Compte', path: '/account-settings', icon: 'User' }
+    { label: 'Communauté', path: '/community-chat', icon: 'Users' }
   ];
 
   useEffect(() => {
@@ -40,7 +38,7 @@ const HeaderComponent = () => {
         <Link to="/investment-dashboard" className="header-logo">
           <Icon name="TrendingUp" size={24} color="#1A1A1A" />
         </Link>
-        <span className="header-brand-text">SmartInvest Africa</span>
+        <span className="header-brand-text">SmartInvest</span>
       </div>
       <nav className="header-nav">
         {navigationItems?.map((item) => (
@@ -71,11 +69,7 @@ const HeaderComponent = () => {
         <div className={`user-dropdown ${isUserDropdownOpen ? 'open' : ''}`}>
           <Link to="/account-settings" className="user-dropdown-item" onClick={() => setIsUserDropdownOpen(false)}>
             <Icon name="User" size={18} />
-            <span>Mon Profil</span>
-          </Link>
-          <Link to="/investment-dashboard" className="user-dropdown-item" onClick={() => setIsUserDropdownOpen(false)}>
-            <Icon name="Wallet" size={18} />
-            <span>Mon Portefeuille</span>
+            <span>Mon Compte</span>
           </Link>
           <div className="user-dropdown-divider" />
           <div className="user-dropdown-item" onClick={handleLogout}>

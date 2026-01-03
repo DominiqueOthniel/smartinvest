@@ -8,8 +8,8 @@ const CommunityChatPageComponent = () => {
   return (
     <>
       <Helmet>
-        <title>Chat Communautaire - SmartInvest Africa</title>
-        <meta name="description" content="Rejoignez la communauté d'investisseurs SmartInvest Africa et échangez avec d'autres investisseurs" />
+        <title>Communauté - SmartInvest</title>
+        <meta name="description" content="Communauté d'investisseurs SmartInvest" />
       </Helmet>
       <div className="min-h-screen bg-background flex flex-col">
         <Header />
@@ -29,4 +29,6 @@ const CommunityChatPageComponent = () => {
 const CommunityChatPage = CommunityChatPageComponent;
 
 export default CommunityChatPage;
+
+
 
