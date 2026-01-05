@@ -4,21 +4,13 @@ import MobileBottomNav from '../../components/ui/MobileBottomNav';
 import Icon from '../../components/AppIcon';
 import PersonalProfileSection from './components/PersonalProfileSection';
 import SecuritySection from './components/SecuritySection';
-import NotificationsSection from './components/NotificationsSection';
-import DocumentsSection from './components/DocumentsSection';
-import PaymentMethodsSection from './components/PaymentMethodsSection';
-import PrivacySection from './components/PrivacySection';
 
 const AccountSettings = () => {
   const [activeTab, setActiveTab] = useState('profile');
 
   const tabs = [
-    { id: 'profile', label: 'Profil Personnel', icon: 'User' },
-    { id: 'security', label: 'Sécurité', icon: 'Lock' },
-    { id: 'notifications', label: 'Notifications', icon: 'Bell' },
-    { id: 'documents', label: 'Documents', icon: 'FileText' },
-    { id: 'payment', label: 'Paiements', icon: 'CreditCard' },
-    { id: 'privacy', label: 'Confidentialité', icon: 'Shield' }
+    { id: 'profile', label: 'Profil', icon: 'User' },
+    { id: 'security', label: 'Sécurité', icon: 'Lock' }
   ];
 
   const renderTabContent = () => {
@@ -27,14 +19,6 @@ const AccountSettings = () => {
         return <PersonalProfileSection />;
       case 'security':
         return <SecuritySection />;
-      case 'notifications':
-        return <NotificationsSection />;
-      case 'documents':
-        return <DocumentsSection />;
-      case 'payment':
-        return <PaymentMethodsSection />;
-      case 'privacy':
-        return <PrivacySection />;
       default:
         return <PersonalProfileSection />;
     }
@@ -75,7 +59,7 @@ const AccountSettings = () => {
             <div className="lg:col-span-9">
               <div className="lg:hidden mb-6">
                 <div className="bg-card border border-border rounded-xl p-2">
-                  <div className="grid grid-cols-3 gap-2">
+                  <div className="grid grid-cols-2 gap-2">
                     {tabs?.map((tab) => (
                       <button
                         key={tab?.id}

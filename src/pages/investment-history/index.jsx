@@ -4,21 +4,8 @@ import MobileBottomNav from '../../components/ui/MobileBottomNav';
 import Icon from '../../components/AppIcon';
 import TransactionRow from './components/TransactionRow';
 import TransactionCard from './components/TransactionCard';
-import FilterPanel from './components/FilterPanel';
-import PerformanceChart from './components/PerformanceChart';
-import SectorAllocationChart from './components/SectorAllocationChart';
-import WithdrawalHistory from './components/WithdrawalHistory';
-import SummaryStats from './components/SummaryStats';
 
 const InvestmentHistory = () => {
-  const [filters, setFilters] = useState({
-    sector: 'all',
-    type: 'all',
-    performance: 'all',
-    dateFrom: '',
-    dateTo: ''
-  });
-
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
@@ -142,14 +129,7 @@ const InvestmentHistory = () => {
     dividendsCount: 4
   };
 
-  const filteredTransactions = transactions?.filter((transaction) => {
-    if (filters?.sector !== 'all' && transaction?.sector?.toLowerCase() !== filters?.sector) return false;
-    if (filters?.type !== 'all' && transaction?.type !== filters?.type) return false;
-    if (filters?.performance === 'positive' && transaction?.performance <= 0) return false;
-    if (filters?.performance === 'negative' && transaction?.performance >= 0) return false;
-    if (filters?.performance === 'neutral' && transaction?.performance !== 0) return false;
-    return true;
-  });
+  const filteredTransactions = transactions;
 
   return (
     <div className="min-h-screen bg-background">
@@ -158,21 +138,6 @@ const InvestmentHistory = () => {
         <div className="max-w-7xl mx-auto">
           <div className="mb-8">
             <h1 className="text-2xl font-bold text-foreground">Historique</h1>
-          </div>
-
-          <SummaryStats stats={summaryStats} />
-
-          <div className="mt-8 grid grid-cols-1 lg:grid-cols-2 gap-6">
-            <PerformanceChart data={performanceData} title="Évolution du Portefeuille" />
-            <SectorAllocationChart sectors={sectorData} />
-          </div>
-
-          <div className="mt-8">
-            <FilterPanel
-              filters={filters}
-              onFilterChange={setFilters}
-              resultCount={filteredTransactions?.length} />
-
           </div>
 
           <div className="mt-8">
@@ -211,13 +176,9 @@ const InvestmentHistory = () => {
             {filteredTransactions?.length === 0 &&
             <div className="bg-card border border-border rounded-xl p-12 text-center">
                 <Icon name="Inbox" size={48} color="var(--color-muted-foreground)" className="mx-auto mb-4" />
-                <p className="text-muted-foreground">Aucune transaction trouvée avec les filtres sélectionnés</p>
+                <p className="text-muted-foreground">Aucune transaction</p>
               </div>
             }
-          </div>
-
-          <div className="mt-8">
-            <WithdrawalHistory withdrawals={withdrawals} />
           </div>
         </div>
       </div>

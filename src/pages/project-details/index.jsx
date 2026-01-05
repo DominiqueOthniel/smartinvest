@@ -6,14 +6,11 @@ import Icon from '../../components/AppIcon';
 import ProjectImageGallery from './components/ProjectImageGallery';
 import ProjectMetricsCard from './components/ProjectMetricsCard';
 import FundingProgressBar from './components/FundingProgressBar';
-import ProjectTabContent from './components/ProjectTabContent';
 import InvestmentPanel from './components/InvestmentPanel';
-import InvestorComments from './components/InvestorComments';
 
 const ProjectDetails = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const [activeTab, setActiveTab] = useState('overview');
   const [isMobileInvestmentOpen, setIsMobileInvestmentOpen] = useState(false);
 
   const projectData = location?.state?.project || {
@@ -185,11 +182,6 @@ const ProjectDetails = () => {
   }];
 
 
-  const tabs = [
-  { id: 'overview', label: 'Aperçu du Projet', icon: 'FileText' },
-  { id: 'team', label: 'Équipe', icon: 'Users' },
-  { id: 'financials', label: 'Financiers', icon: 'TrendingUp' },
-  { id: 'updates', label: 'Mises à Jour', icon: 'Bell' }];
 
 
   useEffect(() => {
@@ -279,29 +271,10 @@ const ProjectDetails = () => {
 
               </div>
 
-              <div className="bg-card border border-border rounded-xl overflow-hidden">
-                <div className="flex border-b border-border overflow-x-auto">
-                  {tabs?.map((tab) =>
-                  <button
-                    key={tab?.id}
-                    onClick={() => setActiveTab(tab?.id)}
-                    className={`flex items-center gap-2 px-6 py-4 text-sm font-medium transition-all whitespace-nowrap min-h-[56px] ${
-                    activeTab === tab?.id ?
-                    'text-primary border-b-2 border-primary bg-primary/5' : 'text-muted-foreground hover:text-foreground hover:bg-muted/30'}`
-                    }>
-
-                      <Icon name={tab?.icon} size={18} />
-                      <span>{tab?.label}</span>
-                    </button>
-                  )}
-                </div>
-
-                <div className="p-6 lg:p-8">
-                  <ProjectTabContent activeTab={activeTab} projectData={projectData} />
-                </div>
+              <div className="bg-card border border-border rounded-xl p-6 lg:p-8">
+                <h2 className="text-xl font-bold text-foreground mb-4">Description</h2>
+                <p className="text-muted-foreground whitespace-pre-line">{projectData?.description}</p>
               </div>
-
-              <InvestorComments comments={investorComments} />
             </div>
 
             <div className="lg:col-span-1">

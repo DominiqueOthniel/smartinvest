@@ -2,19 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet';
 import Header from '../../components/ui/Header';
 import MobileBottomNav from '../../components/ui/MobileBottomNav';
-import FilterToolbar from './components/FilterToolbar';
-import SortControls from './components/SortControls';
 import ProjectCard from './components/ProjectCard';
-import EmptyState from './components/EmptyState';
 
 const InvestmentOpportunities = () => {
-  const [filters, setFilters] = useState({
-    sectors: [],
-    investmentRange: [0, 10000000],
-    returnRange: [0, 50],
-    status: 'all'
-  });
-  const [sortBy, setSortBy] = useState('popularity');
   const [filteredProjects, setFilteredProjects] = useState([]);
 
   const mockProjects = [
@@ -212,73 +202,9 @@ const InvestmentOpportunities = () => {
   }];
 
 
-  const projectCounts = {
-    realEstate: mockProjects?.filter((p) => p?.sector === 'real-estate')?.length,
-    restaurant: mockProjects?.filter((p) => p?.sector === 'restaurant')?.length,
-    technology: mockProjects?.filter((p) => p?.sector === 'technology')?.length
-  };
-
   useEffect(() => {
-    let filtered = [...mockProjects];
-
-    if (filters?.sectors?.length > 0) {
-      filtered = filtered?.filter((project) => filters?.sectors?.includes(project?.sector));
-    }
-
-    filtered = filtered?.filter((project) =>
-    project?.minInvestment >= filters?.investmentRange?.[0] &&
-    project?.minInvestment <= filters?.investmentRange?.[1]
-    );
-
-    filtered = filtered?.filter((project) =>
-    project?.estimatedReturn >= filters?.returnRange?.[0] &&
-    project?.estimatedReturn <= filters?.returnRange?.[1]
-    );
-
-    if (filters?.status === 'active') {
-      filtered = filtered?.filter((project) => project?.fundingProgress < 100);
-    } else if (filters?.status === 'closing-soon') {
-      filtered = filtered?.filter((project) => project?.daysRemaining <= 7);
-    } else if (filters?.status === 'new') {
-      filtered = filtered?.filter((project) => project?.isNew);
-    }
-
-    switch (sortBy) {
-      case 'popularity':
-        filtered?.sort((a, b) => b?.fundingProgress - a?.fundingProgress);
-        break;
-      case 'return':
-        filtered?.sort((a, b) => b?.estimatedReturn - a?.estimatedReturn);
-        break;
-      case 'deadline':
-        filtered?.sort((a, b) => a?.daysRemaining - b?.daysRemaining);
-        break;
-      case 'min-investment':
-        filtered?.sort((a, b) => a?.minInvestment - b?.minInvestment);
-        break;
-      default:
-        break;
-    }
-
-    setFilteredProjects(filtered);
-  }, [filters, sortBy]);
-
-  const handleFilterChange = (newFilters) => {
-    setFilters(newFilters);
-  };
-
-  const handleSortChange = (newSortBy) => {
-    setSortBy(newSortBy);
-  };
-
-  const handleClearFilters = () => {
-    setFilters({
-      sectors: [],
-      investmentRange: [0, 10000000],
-      returnRange: [0, 50],
-      status: 'all'
-    });
-  };
+    setFilteredProjects(mockProjects);
+  }, []);
 
   return (
     <>
@@ -297,26 +223,11 @@ const InvestmentOpportunities = () => {
               </h1>
             </div>
 
-            <FilterToolbar
-              onFilterChange={handleFilterChange}
-              projectCounts={projectCounts} />
-
-
-            <SortControls
-              sortBy={sortBy}
-              onSortChange={handleSortChange}
-              totalResults={filteredProjects?.length} />
-
-
-            {filteredProjects?.length > 0 ?
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {filteredProjects?.map((project) =>
-              <ProjectCard key={project?.id} project={project} />
+              {filteredProjects?.map((project) =>
+                <ProjectCard key={project?.id} project={project} />
               )}
-              </div> :
-
-            <EmptyState onClearFilters={handleClearFilters} />
-            }
+            </div>
           </div>
         </main>
 

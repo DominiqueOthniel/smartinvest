@@ -35,7 +35,7 @@ const HeaderComponent = () => {
   return (
     <header className="header">
       <div className="header-logo-container">
-        <Link to="/investment-dashboard" className="header-logo">
+        <Link to="/" className="header-logo">
           <Icon name="TrendingUp" size={24} color="#1A1A1A" />
         </Link>
         <span className="header-brand-text">SmartInvest</span>
@@ -55,10 +55,6 @@ const HeaderComponent = () => {
       <div className="header-user-section" ref={dropdownRef}>
         <div className="header-user-context" onClick={handleUserContextClick}>
           <div className="header-user-avatar">KM</div>
-          <div className="header-user-info">
-            <span className="header-user-name">Kofi Mensah</span>
-            <span className="header-user-balance">125,000 CFA</span>
-          </div>
           <Icon 
             name={isUserDropdownOpen ? 'ChevronUp' : 'ChevronDown'} 
             size={16} 
@@ -71,7 +67,6 @@ const HeaderComponent = () => {
             <Icon name="User" size={18} />
             <span>Mon Compte</span>
           </Link>
-          <div className="user-dropdown-divider" />
           <div className="user-dropdown-item" onClick={handleLogout}>
             <Icon name="LogOut" size={18} />
             <span>Déconnexion</span>

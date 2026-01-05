@@ -4,26 +4,12 @@ import Header from '../../components/ui/Header';
 import MobileBottomNav from '../../components/ui/MobileBottomNav';
 import InvestmentSummaryCard from './components/InvestmentSummaryCard';
 import PaymentMethodSection from './components/PaymentMethodSection';
-import SecurityBadges from './components/SecurityBadges';
-import TermsAgreementSection from './components/TermsAgreementSection';
 import ConfirmationActions from './components/ConfirmationActions';
 import Icon from '../../components/AppIcon';
 
 const InvestmentConfirmation = () => {
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState('card');
   const [isAgreementsComplete, setIsAgreementsComplete] = useState(false);
-  const [scrollProgress, setScrollProgress] = useState(0);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const totalHeight = document.documentElement?.scrollHeight - window.innerHeight;
-      const progress = (window.scrollY / totalHeight) * 100;
-      setScrollProgress(progress);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   const investmentData = {
     projectName: "Résidence Luxe Abidjan",
@@ -50,11 +36,6 @@ const InvestmentConfirmation = () => {
         <meta name="description" content="Confirmez votre investissement de manière sécurisée sur SmartInvest Africa. Paiement crypté SSL et conforme aux régulations BCEAO." />
       </Helmet>
       <div className="min-h-screen bg-background">
-        <div 
-          className="fixed top-0 left-0 right-0 h-1 bg-primary z-50 transition-all duration-300"
-          style={{ width: `${scrollProgress}%` }}
-        />
-
         <Header />
 
         <main className="content-wrapper">
@@ -71,29 +52,18 @@ const InvestmentConfirmation = () => {
               </div>
             </div>
 
-            <div className="flex items-center gap-3 p-4 bg-primary/10 border border-primary/20 rounded-xl">
-              <Icon name="Info" size={20} color="var(--color-primary)" />
-              <p className="text-sm text-foreground">
-                <span className="font-semibold">Transaction sécurisée :</span> Toutes vos informations sont cryptées et protégées par SSL 256-bit. 
-                Vos données bancaires ne sont jamais stockées sur nos serveurs.
-              </p>
-            </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
               <div className="lg:col-span-2 space-y-6">
                 <InvestmentSummaryCard {...investmentData} />
                 
                 <PaymentMethodSection onPaymentMethodChange={handlePaymentMethodChange} />
-                
-                <TermsAgreementSection onAgreementChange={handleAgreementChange} />
               </div>
 
               <div className="space-y-6">
                 <div className="lg:sticky lg:top-24 space-y-6">
-                  <SecurityBadges />
-                  
                   <ConfirmationActions 
-                    isAgreementsComplete={isAgreementsComplete}
+                    isAgreementsComplete={true}
                     investmentAmount={investmentData?.investmentAmount + investmentData?.processingFee}
                     currency={investmentData?.currency}
                   />
